@@ -1,0 +1,5 @@
+sku,name,product_type,category,subcategory,brand,price,currency,gender,status,description,materials,sizes,image_urls
+HL-TSH-001,Boxy Cotton Tee,clothes,Clothing,Western,House Label,1299,INR,women,active,Relaxed boxy fit in heavyweight cotton.,Cotton,XS:4|S:8|M:10|L:6|XL:3,https://example.com/img/tee-front.jpg|https://example.com/img/tee-back.jpg
+HL-KUR-002,Block Print Kurta,clothes,Clothing,Ethnic,House Label,2499,INR,women,active,Hand block printed straight kurta in soft cotton.,Cotton|Rayon,S:5|M:7|L:5,https://example.com/img/kurta.jpg
+HL-BAG-003,Woven Tote,accessories,Accessories,Bags,House Label,1899,INR,unisex,active,Everyday tote in woven cotton canvas.,Cotton,One Size:20,https://example.com/img/tote.jpg
+HL-SNK-004,Court Sneaker,footwear,Footwear,Sneakers,Generic,3299,INR,unisex,draft,Low-profile court sneaker with rubber sole.,Leather|Rubber,UK 5:3|UK 6:5|UK 7:5|UK 8:4,https://example.com/img/sneaker.jpg

@@ -1,0 +1,18 @@
+@host = http://localhost:5056
+
+GET {{host}}/health
+
+###
+GET {{host}}/api/store-config
+
+###
+GET {{host}}/api/categories
+
+###
+GET {{host}}/api/products?status=all
+
+###
+GET {{host}}/api/products?category=western&gender=women
+
+###
+GET {{host}}/api/products/1

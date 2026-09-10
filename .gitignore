@@ -1,0 +1,34 @@
+# Secrets / local config
+.env
+*.local
+
+# Node / frontend
+node_modules/
+dist/
+.vite/
+*.log
+
+# .NET / backend
+bin/
+obj/
+*.user
+
+# AWS CDK
+infrastructure/cdk.out/
+infrastructure/node_modules/
+
+# SAM
+.aws-sam/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# python venv for the CSV importer
+db/csv-import/.venv/
+
+# .NET build output
+backend/**/bin/
+backend/**/obj/

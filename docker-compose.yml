@@ -1,0 +1,27 @@
+services:
+  db:
+    image: mysql:8.4
+    container_name: ecom_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootpass}
+      MYSQL_DATABASE: ${DB_NAME:-ecom}
+      MYSQL_USER: ${DB_USER:-ecom}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-ecompass}
+    ports:
+      - "${DB_PORT:-3306}:3306"
+    volumes:
+      - ecom_db_data:/var/lib/mysql
+      # The mysql entrypoint runs *.sql here in filename order, once, on first init.
+      # (It does not recurse into sub-directories, so each file is mounted explicitly.)
+      - ./db/schema/001_init.sql:/docker-entrypoint-initdb.d/01_schema_init.sql:ro
+      - ./db/seed/001_lookups.sql:/docker-entrypoint-initdb.d/02_seed_lookups.sql:ro
+      - ./db/seed/002_store_config.sql:/docker-entrypoint-initdb.d/03_seed_store_config.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${DB_ROOT_PASSWORD:-rootpass}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  ecom_db_data:
