@@ -1,28 +1,6 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+namespace Ecom.Api.Models.Dtos;
 
-namespace Ecom.Api;
-
-// Types materialized by Dapper are plain classes with settable properties:
-// Dapper maps by column name and coerces numeric widths (UNSIGNED INT, SMALLINT,
-// TINYINT(1)) into these. Types that the API code constructs itself are records.
-
-// ---- Store config --------------------------------------------------------
-
-public sealed record StoreConfigDto(
-    string StoreName,
-    string Currency,
-    string ActiveLayout,
-    bool AiStylistEnabled,
-    ThemeDto? Theme);
-
-public sealed record ThemeDto(
-    string Key,
-    string Name,
-    string DefaultLayout,
-    [property: JsonPropertyName("cssVariables")] JsonElement CssVariables);
-
-// ---- Categories ---------------------------------------------------------
+// Materialized by Dapper (proc result-set column aliases are PascalCase to match).
 
 public sealed class CategoryDto
 {
@@ -33,8 +11,6 @@ public sealed class CategoryDto
     public int? ParentId { get; set; }
     public int SortOrder { get; set; }
 }
-
-// ---- Products ---------------------------------------------------------
 
 public sealed class ProductListItemDto
 {
@@ -81,10 +57,3 @@ public sealed record ProductDetailDto(
     IReadOnlyList<ProductImageDto> Images,
     IReadOnlyList<ProductSizeDto> Sizes,
     IReadOnlyList<string> Materials);
-
-// ---- Shared ---------------------------------------------------------
-
-public sealed record Paged<T>(IReadOnlyList<T> Items, int Page, int PageSize, long Total)
-{
-    public int TotalPages => PageSize > 0 ? (int)Math.Ceiling(Total / (double)PageSize) : 0;
-}

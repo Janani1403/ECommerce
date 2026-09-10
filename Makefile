@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-.PHONY: help up down reset logs psql db-shell import-sample
+.PHONY: help up down reset logs psql db-shell procs import-sample
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN{FS=":.*?## "}{printf "  \033[36m%-16s\033[0m %s\n", $$1, $$2}'
@@ -22,6 +22,10 @@ logs: ## tail MySQL logs
 
 db-shell: ## open a mysql shell inside the container
 	docker compose exec db mysql -uecom -pecompass ecom
+
+procs: ## reload db/procs/*.sql into the running container (no full reset)
+	@for f in db/procs/*.sql; do echo "  applying $$f"; docker compose exec -T db mysql -uroot -prootpass ecom < "$$f"; done
+	@echo "procedures reloaded"
 
 import-sample: ## import the sample product CSV (creates a venv on first run)
 	cd db/csv-import && test -d .venv || python3 -m venv .venv

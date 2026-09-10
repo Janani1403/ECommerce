@@ -32,3 +32,6 @@ db/csv-import/.venv/
 # .NET build output
 backend/**/bin/
 backend/**/obj/
+
+# uploaded product images (local blob store)
+backend/src/Ecom.Api/wwwroot/uploads/
