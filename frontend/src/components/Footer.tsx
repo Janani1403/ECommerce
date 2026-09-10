@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export function Footer({ storeName }: { storeName: string }) {
   return (
     <footer className="site-footer">
@@ -5,7 +7,7 @@ export function Footer({ storeName }: { storeName: string }) {
         <span>
           © {new Date().getFullYear()} {storeName}
         </span>
-        <span>Built on the e-commerce template</span>
+        <Link to="/admin">Store settings</Link>
       </div>
     </footer>
   )

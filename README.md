@@ -94,6 +94,21 @@ picker for the site-builder use case.
 - Per-store colour tweaks go in `ui_themes.css_variables` (JSON), merged on top
   of the CSS file at runtime.
 
+### Choosing the active theme + layout
+
+Three ways, all landing in the same `store_config` row:
+
+1. **Admin page** - `/admin` (linked from the footer). Preview cards for every
+   theme and layout; **Save to store** writes `PATCH /api/store-config`, which
+   updates the row and appends to `audit_log`.
+2. **SQL** - `UPDATE store_config SET active_theme_id = 4, active_layout = 'spotlight' WHERE id = 1;`
+3. **Seed** - `db/seed/002_store_config.sql` sets the initial value on `make reset`.
+
+`PATCH /api/store-config` takes `{ "themeKey": "...", "layout": "..." }` (either
+optional). If `AdminApi:Token` is configured it requires a matching
+`X-Admin-Token` header; unset (the dev default) means open. Auth moves to the
+Cognito admin role later.
+
 ### Docker engine (Colima)
 
 This project uses [Colima](https://github.com/abiosoft/colima) as the Docker

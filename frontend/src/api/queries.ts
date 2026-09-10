@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query'
-import { apiGet } from './client'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { apiGet, apiPatch } from './client'
 import type {
   Category,
   Paged,
@@ -8,6 +8,7 @@ import type {
   ProductQuery,
   StoreConfig,
   ThemeSummary,
+  UpdateStoreConfig,
 } from './types'
 
 export function useStoreConfig() {
@@ -23,6 +24,14 @@ export function useThemes() {
     queryKey: ['themes'],
     queryFn: () => apiGet<ThemeSummary[]>('/themes'),
     staleTime: Infinity,
+  })
+}
+
+export function useUpdateStoreConfig() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: (body: UpdateStoreConfig) => apiPatch<StoreConfig>('/store-config', body),
+    onSuccess: (data) => qc.setQueryData(['store-config'], data),
   })
 }
 

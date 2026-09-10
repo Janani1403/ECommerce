@@ -16,9 +16,15 @@ export interface StoreConfig {
 }
 
 export interface ThemeSummary {
+  id: number
   key: string
   name: string
   defaultLayout: string
+}
+
+export interface UpdateStoreConfig {
+  themeKey?: string
+  layout?: string
 }
 
 export interface Category {

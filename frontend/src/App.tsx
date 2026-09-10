@@ -5,6 +5,7 @@ import { CartProvider } from './cart/CartProvider'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
 import { StudioPanel } from './components/StudioPanel'
+import { AdminPage } from './pages/AdminPage'
 import { CategoryPage } from './pages/CategoryPage'
 import { HomePage } from './pages/HomePage'
 import { NotFound } from './pages/NotFound'
@@ -34,6 +35,7 @@ export default function App() {
               <Route path="/" element={<HomePage storeName={storeName} />} />
               <Route path="/c/:slug" element={<CategoryPage />} />
               <Route path="/p/:id" element={<ProductPage />} />
+              <Route path="/admin" element={<AdminPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

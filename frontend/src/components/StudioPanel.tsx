@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { LAYOUTS } from '@/layouts/registry'
 import { THEMES } from '@/theme/registry'
 import { useStudio } from '@/theme/StudioProvider'
@@ -12,9 +13,11 @@ import './studio-panel.css'
 export function StudioPanel() {
   const { theme, layout, overridden, setTheme, setLayout, reset } = useStudio()
   const [open, setOpen] = useState(false)
+  const { pathname } = useLocation()
 
   const enabled = import.meta.env.DEV || import.meta.env.VITE_ENABLE_STUDIO === 'true'
-  if (!enabled) return null
+  // The admin page is itself the theme/layout picker - no need for the overlay there.
+  if (!enabled || pathname.startsWith('/admin')) return null
 
   return (
     <div className={`studio ${open ? 'studio--open' : ''}`}>
