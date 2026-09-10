@@ -1,0 +1,30 @@
+/* Sage Mint - cool green pastels, crisp corners. Clean / wellness. */
+[data-theme='sage-mint'] {
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --color-bg: #f6faf7;
+  --color-bg-alt: #e7f1eb;
+  --color-surface: #ffffff;
+  --color-fg: #22302a;
+  --color-fg-muted: #5f746b;
+  --color-line: #e0ebe4;
+  --color-accent: #4f9d7f;
+  --color-accent-fg: #f7fbf9;
+  --color-accent-soft: #e2efe9;
+  --color-price: #22302a;
+  --color-sale: #b26b3c;
+
+  --gradient-page: #f6faf7;
+  --gradient-hero: linear-gradient(180deg, #e6f1ea 0%, #f6faf7 100%);
+  --gradient-accent: #4f9d7f;
+
+  --radius-xs: 3px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-card: 0 1px 2px rgba(30, 70, 55, 0.05), 0 6px 20px rgba(30, 70, 55, 0.06);
+  --shadow-pop: 0 12px 32px rgba(30, 70, 55, 0.16);
+
+  --img-ratio: 3 / 4;
+}

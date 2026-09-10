@@ -1,0 +1,117 @@
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  visibility: hidden;
+  overflow: hidden;
+}
+.drawer--open {
+  pointer-events: auto;
+  visibility: visible;
+}
+.drawer__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 12, 25, 0.32);
+  opacity: 0;
+  transition: opacity var(--transition) var(--ease);
+}
+.drawer--open .drawer__scrim {
+  opacity: 1;
+}
+.drawer__panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(420px, 92vw);
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  border-left: 1px solid var(--color-line);
+  transform: translateX(100%);
+  transition: transform 320ms var(--ease);
+}
+.drawer--open .drawer__panel {
+  transform: translateX(0);
+}
+.drawer__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 22px;
+  border-bottom: 1px solid var(--color-line);
+}
+.drawer__head h2 {
+  font-size: 1.25rem;
+}
+.drawer__empty {
+  padding: 40px 22px;
+  color: var(--color-fg-muted);
+}
+.drawer__lines {
+  list-style: none;
+  padding: 8px 22px;
+  margin: 0;
+  overflow-y: auto;
+  flex: 1;
+}
+.drawer-line {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  gap: 12px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-line);
+}
+.drawer-line__media {
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--color-bg-alt);
+}
+.drawer-line__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.drawer-line__name {
+  font-weight: 500;
+}
+.drawer-line__size {
+  font-size: var(--fs-sm);
+  color: var(--color-fg-muted);
+  margin-top: 2px;
+}
+.drawer-line__qty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  font-size: var(--fs-sm);
+}
+.drawer-line__qty button {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-xs);
+}
+.drawer-line__remove {
+  width: auto !important;
+  border: none !important;
+  color: var(--color-fg-muted);
+  text-decoration: underline;
+}
+.drawer-line__price {
+  font-size: 0.9rem;
+}
+.drawer__foot {
+  padding: 18px 22px 24px;
+  border-top: 1px solid var(--color-line);
+}
+.drawer__subtotal {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  font-size: 1.05rem;
+}

@@ -245,10 +245,12 @@ CREATE TABLE style_profiles (
 -- ---------------------------------------------------------------------------
 CREATE TABLE ui_themes (
   id             INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  name           VARCHAR(80) NOT NULL,
-  css_variables  JSON NOT NULL,               -- {"--color-bg":"#fff","--font-body":"Inter",...}
-  layout_type    ENUM('grid','list','masonry') NOT NULL DEFAULT 'grid',
+  key_name       VARCHAR(40) NOT NULL,        -- stable slug the frontend maps to a CSS file, e.g. "lavender-mist"
+  name           VARCHAR(80) NOT NULL,        -- human label for the admin / template picker
+  css_variables  JSON NOT NULL,               -- optional per-store overrides merged on top of the CSS file
+  default_layout VARCHAR(32) NOT NULL DEFAULT 'grid',  -- suggested list layout for this theme (advisory)
   PRIMARY KEY (id),
+  UNIQUE KEY uq_ui_themes_key (key_name),
   UNIQUE KEY uq_ui_themes_name (name)
 ) ENGINE=InnoDB;
 
@@ -257,7 +259,8 @@ CREATE TABLE store_config (
   store_name         VARCHAR(120) NOT NULL DEFAULT 'My Store',
   currency           CHAR(3) NOT NULL DEFAULT 'INR',
   active_theme_id    INT UNSIGNED NULL,
-  active_layout      ENUM('grid','list','masonry') NOT NULL DEFAULT 'grid',
+  active_layout      VARCHAR(32) NOT NULL DEFAULT 'grid',   -- frontend maps to a product-list layout component
+
   ai_stylist_enabled TINYINT(1) NOT NULL DEFAULT 0,
   updated_at         TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id),

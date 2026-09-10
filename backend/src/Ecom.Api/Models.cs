@@ -17,8 +17,9 @@ public sealed record StoreConfigDto(
     ThemeDto? Theme);
 
 public sealed record ThemeDto(
+    string Key,
     string Name,
-    string LayoutType,
+    string DefaultLayout,
     [property: JsonPropertyName("cssVariables")] JsonElement CssVariables);
 
 // ---- Categories ---------------------------------------------------------

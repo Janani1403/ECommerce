@@ -1,0 +1,30 @@
+/* Peach Sorbet - warm pastels, rounder shapes. Playful DTC. */
+[data-theme='peach-sorbet'] {
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --color-bg: #fff9f5;
+  --color-bg-alt: #ffeee4;
+  --color-surface: #fffefc;
+  --color-fg: #3d2b25;
+  --color-fg-muted: #8a6f64;
+  --color-line: #f4e5db;
+  --color-accent: #e07f5f;
+  --color-accent-fg: #fffaf7;
+  --color-accent-soft: #fce9df;
+  --color-price: #3d2b25;
+  --color-sale: #c65b3e;
+
+  --gradient-page: #fff9f5;
+  --gradient-hero: linear-gradient(160deg, #ffe4d3 0%, #ffeee7 55%, #fff4ec 100%);
+  --gradient-accent: #e07f5f;
+
+  --radius-xs: 6px;
+  --radius-sm: 14px;
+  --radius-md: 20px;
+  --radius-lg: 30px;
+  --shadow-card: 0 2px 6px rgba(180, 100, 70, 0.06), 0 14px 34px rgba(180, 100, 70, 0.1);
+  --shadow-pop: 0 18px 46px rgba(180, 100, 70, 0.2);
+
+  --img-ratio: 1 / 1;
+}

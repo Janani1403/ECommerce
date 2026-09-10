@@ -50,7 +50,7 @@ docker compose logs -f db        # wait for "ready for connections"
 
 Connect with DBeaver: `localhost:3306`, database `ecom`, user `ecom` / `ecompass`.
 
-Load the sample catalog (4 products) through the CSV importer:
+Load the sample catalog through the CSV importer:
 
 ```bash
 make import-sample
@@ -62,6 +62,37 @@ scratch after a schema change:
 ```bash
 make reset          # docker compose down -v && up -d db
 ```
+
+### Run the app (three terminals)
+
+```bash
+make up                                        # 1. MySQL
+cd backend/src/Ecom.Api && dotnet run          # 2. API  -> http://localhost:5056
+cd frontend && npm install && npm run dev      # 3. storefront -> http://localhost:5173
+```
+
+The Vite dev server proxies `/api/*` to the API, so no CORS setup is needed
+locally. The API reads its connection string from `appsettings.Development.json`;
+production reads `CONNECTION_STRING` from the environment.
+
+## Themes & layouts
+
+The storefront ships **5 themes x 5 product-list layouts**, chosen independently
+and stored in the database (`store_config.active_theme_id`, `active_layout`).
+This is what makes one codebase serve many stores - and seeds the template
+picker for the site-builder use case.
+
+- **Themes** (`frontend/src/theme/themes/*.css`): `lavender-mist`, `peach-sorbet`,
+  `sage-mint`, `ombre-dusk`, `porcelain-noir`. Each redefines the same token
+  contract (`theme/tokens.css`) under `[data-theme="<key>"]`. Add one: drop a CSS
+  file, register it in `theme/registry.ts`, add a `ui_themes` row.
+- **Layouts** (`frontend/src/layouts/*`): `grid`, `masonry`, `editorial`,
+  `compact`, `spotlight`. Each is a component taking `{ products }`. Add one:
+  build the component, register it in `layouts/registry.ts`.
+- **Preview**: the floating **Studio** panel (dev only, or `VITE_ENABLE_STUDIO=true`)
+  swaps any theme/layout combo live without touching the database.
+- Per-store colour tweaks go in `ui_themes.css_variables` (JSON), merged on top
+  of the CSS file at runtime.
 
 ### Docker engine (Colima)
 

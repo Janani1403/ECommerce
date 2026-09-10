@@ -1,0 +1,30 @@
+/* Lavender Mist - plain white with pastel lavender. Airy, generous whitespace. */
+[data-theme='lavender-mist'] {
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --color-bg: #fdfdff;
+  --color-bg-alt: #f4f1fc;
+  --color-surface: #ffffff;
+  --color-fg: #24222e;
+  --color-fg-muted: #706d82;
+  --color-line: #ebe9f4;
+  --color-accent: #7c6bd8;
+  --color-accent-fg: #ffffff;
+  --color-accent-soft: #efecfb;
+  --color-price: #24222e;
+  --color-sale: #b5487a;
+
+  --gradient-page: #fdfdff;
+  --gradient-hero: linear-gradient(180deg, #f3f0fc 0%, #fdfdff 100%);
+  --gradient-accent: #7c6bd8;
+
+  --radius-xs: 4px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --shadow-card: 0 1px 2px rgba(60, 50, 120, 0.05), 0 10px 30px rgba(60, 50, 120, 0.07);
+  --shadow-pop: 0 16px 44px rgba(60, 50, 120, 0.18);
+
+  --img-ratio: 4 / 5;
+}

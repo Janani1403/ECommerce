@@ -1,0 +1,32 @@
+/* Ombre Dusk - the gradient theme. Glassy cards, ombre page + hero + CTAs. */
+[data-theme='ombre-dusk'] {
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --color-bg: #fbf7fc;
+  --color-bg-alt: #f4eaf6;
+  --color-surface: rgba(255, 255, 255, 0.66);
+  --color-fg: #2f2540;
+  --color-fg-muted: #6d6280;
+  --color-line: rgba(120, 90, 150, 0.18);
+  --color-accent: #b078dd;
+  --color-accent-fg: #ffffff;
+  --color-accent-soft: rgba(176, 120, 221, 0.14);
+  --color-price: #2f2540;
+  --color-sale: #d1477f;
+
+  --gradient-page: linear-gradient(175deg, #f3e7fb 0%, #fdecf1 45%, #fef3ea 100%);
+  --gradient-hero: linear-gradient(120deg, #cda9ec 0%, #f2b6c6 52%, #f8ccb2 100%);
+  --gradient-accent: linear-gradient(135deg, #a97ce0 0%, #e98fb0 100%);
+
+  --radius-xs: 6px;
+  --radius-sm: 16px;
+  --radius-md: 22px;
+  --radius-lg: 34px;
+  --shadow-card: 0 2px 10px rgba(120, 80, 160, 0.1), 0 20px 50px rgba(120, 80, 160, 0.16);
+  --shadow-pop: 0 24px 60px rgba(120, 80, 160, 0.28);
+  --card-border: 1px solid rgba(255, 255, 255, 0.55);
+  --card-backdrop: blur(12px);
+
+  --img-ratio: 4 / 5;
+}
