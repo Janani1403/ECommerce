@@ -1,4 +1,6 @@
 import type { ProductListItem } from '@/api/types'
+import { CONTENT } from '@/constants/content'
+import { Skeleton } from '@/components/common/Skeleton'
 import { resolveLayout } from './registry'
 
 interface Props {
@@ -16,10 +18,13 @@ export function ProductList({ products, layout, loading, skeletonCount = 8 }: Pr
       <div className="layout-grid">
         {Array.from({ length: skeletonCount }).map((_, i) => (
           <div key={i} className="card">
-            <div className="card__media skeleton" style={{ aspectRatio: 'var(--img-ratio)' }} />
+            <Skeleton
+              className="card__media"
+              style={{ aspectRatio: 'var(--img-ratio)' }}
+            />
             <div className="card__body">
-              <div className="skeleton" style={{ height: 12, width: '40%' }} />
-              <div className="skeleton" style={{ height: 16, width: '75%', marginTop: 8 }} />
+              <Skeleton style={{ height: 12, width: '40%' }} />
+              <Skeleton style={{ height: 16, width: '75%', marginTop: 8 }} />
             </div>
           </div>
         ))}
@@ -28,7 +33,7 @@ export function ProductList({ products, layout, loading, skeletonCount = 8 }: Pr
   }
 
   if (products.length === 0) {
-    return <p className="empty-note">Nothing here yet.</p>
+    return <p className="empty-note">{CONTENT.list.empty}</p>
   }
 
   return <Component products={products} />

@@ -27,7 +27,6 @@ procs: ## reload db/procs/*.sql into the running container (no full reset)
 	@for f in db/procs/*.sql; do echo "  applying $$f"; docker compose exec -T db mysql -uroot -prootpass ecom < "$$f"; done
 	@echo "procedures reloaded"
 
-import-sample: ## import the sample product CSV (creates a venv on first run)
-	cd db/csv-import && test -d .venv || python3 -m venv .venv
-	cd db/csv-import && ./.venv/bin/pip -q install -r requirements.txt
-	cd db/csv-import && ./.venv/bin/python import_products.py products_template.csv
+import-sample: ## import the sample catalog via the API (requires: dotnet run in backend/src/Ecom.Api)
+	curl -sf -X POST http://localhost:5056/api/admin/products/import \
+	  -F "csv=@db/csv-import/products_template.csv" | jq .

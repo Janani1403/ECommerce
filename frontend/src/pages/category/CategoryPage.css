@@ -1,0 +1,23 @@
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: clamp(20px, 3vw, 36px);
+}
+.chip {
+  padding: 7px 14px;
+  font-size: var(--fs-sm);
+  border-radius: 999px;
+  border: 1px solid var(--color-line);
+  color: var(--color-fg-muted);
+  background: var(--color-surface);
+  transition: all var(--transition) var(--ease);
+}
+.chip:hover {
+  color: var(--color-fg);
+}
+.chip[aria-pressed='true'] {
+  color: var(--color-accent-fg);
+  background: var(--color-accent);
+  border-color: transparent;
+}

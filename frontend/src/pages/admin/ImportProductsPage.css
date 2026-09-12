@@ -1,0 +1,55 @@
+.import__fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+@media (max-width: 640px) {
+  .import__fields {
+    grid-template-columns: 1fr;
+  }
+}
+.import__actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.import__results {
+  margin-top: clamp(28px, 5vw, 48px);
+}
+.import__results h2 {
+  font-size: 1.15rem;
+}
+.import__summary {
+  color: var(--color-fg-muted);
+  font-size: var(--fs-sm);
+  margin: 6px 0 16px;
+}
+.import__table {
+  overflow-x: auto;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+}
+.import__table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.import__table th,
+.import__table td {
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--color-line);
+}
+.import__table th {
+  font-size: var(--fs-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+}
+.import__table tr:last-child td {
+  border-bottom: none;
+}
+.import__table tr.is-error td {
+  color: var(--color-sale);
+}

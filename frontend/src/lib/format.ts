@@ -1,4 +1,10 @@
-export function formatPrice(amount: number, currency = 'INR', locale = 'en-IN'): string {
+import { DEFAULT_CURRENCY, DEFAULT_LOCALE } from '@/constants/catalog'
+
+export function formatPrice(
+  amount: number,
+  currency = DEFAULT_CURRENCY,
+  locale = DEFAULT_LOCALE,
+): string {
   try {
     return new Intl.NumberFormat(locale, {
       style: 'currency',

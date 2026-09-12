@@ -1,4 +1,4 @@
-import { ProductCard } from '@/components/ProductCard'
+import { ProductCard } from '@/components/product/ProductCard'
 import type { LayoutProps } from './registry'
 
 export function GridLayout({ products }: LayoutProps) {

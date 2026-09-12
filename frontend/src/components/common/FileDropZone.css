@@ -1,0 +1,40 @@
+.dropzone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px;
+  border: 1.5px dashed var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: border-color var(--transition) var(--ease), background var(--transition) var(--ease);
+}
+.dropzone:hover,
+.dropzone.is-dragging {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+.dropzone.has-file {
+  border-style: solid;
+  border-color: var(--color-accent);
+}
+.dropzone__label {
+  font-size: var(--fs-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+}
+.dropzone__file {
+  font-size: 0.95rem;
+  color: var(--color-fg);
+  word-break: break-all;
+}
+.dropzone__clear {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: var(--fs-sm);
+  color: var(--color-fg-muted);
+  text-decoration: underline;
+}

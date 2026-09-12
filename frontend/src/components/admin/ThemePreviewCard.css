@@ -1,0 +1,65 @@
+/* Mock storefront, scoped by its own data-theme so it uses real theme tokens. */
+.theme-mock {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--color-line);
+  background: var(--gradient-page);
+  display: flex;
+  flex-direction: column;
+}
+.theme-mock__bar {
+  height: 16%;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px;
+  background: color-mix(in srgb, var(--color-bg) 80%, transparent);
+  border-bottom: 1px solid var(--color-line);
+}
+.theme-mock__brand {
+  width: 16px;
+  height: 5px;
+  border-radius: 2px;
+  background: var(--color-fg);
+}
+.theme-mock__link {
+  width: 10px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--color-fg-muted);
+}
+.theme-mock__hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 12px;
+  background: var(--gradient-hero);
+}
+.theme-mock__h1 {
+  width: 55%;
+  height: 8px;
+  border-radius: 3px;
+  background: var(--color-fg);
+}
+.theme-mock__btn {
+  width: 34%;
+  height: 10px;
+  border-radius: var(--radius-xs);
+  background: var(--gradient-accent);
+}
+.theme-mock__grid {
+  height: 36%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  padding: 8px;
+  background: var(--color-bg);
+}
+.theme-mock__tile {
+  background: var(--color-bg-alt);
+  border: var(--card-border);
+  border-radius: var(--radius-sm);
+}

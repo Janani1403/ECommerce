@@ -1,0 +1,12 @@
+.site-footer {
+  padding-block: clamp(32px, 5vw, 64px);
+  border-top: 1px solid var(--color-line);
+  color: var(--color-fg-muted);
+  font-size: var(--fs-sm);
+}
+.site-footer__inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}

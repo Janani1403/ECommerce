@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
-import { formatPrice } from '@/lib/format'
+import { CONTENT } from '@/constants/content'
+import { ROUTES } from '@/constants/routes'
+import { Price } from '@/components/product/Price'
 import type { LayoutProps } from './registry'
 
 export function EditorialLayout({ products }: LayoutProps) {
@@ -7,7 +9,7 @@ export function EditorialLayout({ products }: LayoutProps) {
     <div className="layout-editorial">
       {products.map((p, i) => (
         <article className={`editorial-row ${i % 2 ? 'editorial-row--flip' : ''}`} key={p.id}>
-          <Link to={`/p/${p.id}`} className="editorial-row__media">
+          <Link to={ROUTES.product(p.id)} className="editorial-row__media">
             {p.primaryImageUrl && <img src={p.primaryImageUrl} alt={p.name} loading="lazy" />}
           </Link>
           <div className="editorial-row__text">
@@ -16,9 +18,11 @@ export function EditorialLayout({ products }: LayoutProps) {
               {p.brandName ? ` · ${p.brandName}` : ''}
             </p>
             <h3>{p.name}</h3>
-            <p className="editorial-row__price">{formatPrice(p.price, p.currency)}</p>
-            <Link to={`/p/${p.id}`} className="btn btn--ghost">
-              View piece
+            <p className="editorial-row__price">
+              <Price amount={p.price} currency={p.currency} />
+            </p>
+            <Link to={ROUTES.product(p.id)} className="btn btn--ghost">
+              {CONTENT.product.viewPiece}
             </Link>
           </div>
         </article>

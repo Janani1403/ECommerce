@@ -97,3 +97,9 @@ export interface ProductQuery {
   page?: number
   pageSize?: number
 }
+
+export interface ImportRowResult {
+  sku: string
+  action: 'inserted' | 'updated' | 'error'
+  message: string | null
+}

@@ -1,6 +1,4 @@
-// In dev, VITE_API_BASE_URL is blank and Vite proxies /api -> :5056.
-// In prod, set it to the deployed API Gateway origin.
-const BASE = import.meta.env.VITE_API_BASE_URL ?? ''
+import { ADMIN_TOKEN_HEADER, API_BASE } from '@/constants/api'
 
 export class ApiError extends Error {
   status: number
@@ -11,39 +9,48 @@ export class ApiError extends Error {
   }
 }
 
+/** Admin token, if the deployment requires one (dev leaves it unset). */
+const ADMIN_TOKEN = import.meta.env.VITE_ADMIN_TOKEN
+const adminHeaders: Record<string, string> = ADMIN_TOKEN
+  ? { [ADMIN_TOKEN_HEADER]: ADMIN_TOKEN }
+  : {}
+
+async function readError(res: Response, method: string, path: string): Promise<never> {
+  let detail = ''
+  try {
+    detail = (await res.json())?.error ?? ''
+  } catch {
+    /* body wasn't JSON */
+  }
+  throw new ApiError(res.status, detail || `${method} ${path} -> ${res.status}`)
+}
+
 export async function apiGet<T>(path: string, params?: Record<string, unknown>): Promise<T> {
-  const url = new URL(`${BASE}/api${path}`, window.location.origin)
+  const url = new URL(`${API_BASE}/api${path}`, window.location.origin)
   for (const [k, v] of Object.entries(params ?? {})) {
     if (v !== undefined && v !== null && v !== '') url.searchParams.set(k, String(v))
   }
-
   const res = await fetch(url, { headers: { Accept: 'application/json' } })
-  if (!res.ok) {
-    throw new ApiError(res.status, `GET ${path} -> ${res.status}`)
-  }
+  if (!res.ok) return readError(res, 'GET', path)
   return res.json() as Promise<T>
 }
 
-/** Admin token, if the deployment requires one (dev leaves it unset). */
-const ADMIN_TOKEN = import.meta.env.VITE_ADMIN_TOKEN
-
 export async function apiPatch<T>(path: string, body: unknown): Promise<T> {
-  const res = await fetch(`${BASE}/api${path}`, {
+  const res = await fetch(`${API_BASE}/api${path}`, {
     method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-      ...(ADMIN_TOKEN ? { 'X-Admin-Token': ADMIN_TOKEN } : {}),
-    },
+    headers: { 'Content-Type': 'application/json', ...adminHeaders },
     body: JSON.stringify(body),
   })
-  if (!res.ok) {
-    let detail = ''
-    try {
-      detail = (await res.json())?.error ?? ''
-    } catch {
-      /* ignore */
-    }
-    throw new ApiError(res.status, detail || `PATCH ${path} -> ${res.status}`)
-  }
+  if (!res.ok) return readError(res, 'PATCH', path)
+  return res.json() as Promise<T>
+}
+
+export async function apiPostForm<T>(path: string, form: FormData): Promise<T> {
+  const res = await fetch(`${API_BASE}/api${path}`, {
+    method: 'POST',
+    headers: { ...adminHeaders },
+    body: form,
+  })
+  if (!res.ok) return readError(res, 'POST', path)
   return res.json() as Promise<T>
 }

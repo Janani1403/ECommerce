@@ -26,8 +26,6 @@ infrastructure/node_modules/
 .vscode/*
 !.vscode/extensions.json
 
-# python venv for the CSV importer
-db/csv-import/.venv/
 
 # .NET build output
 backend/**/bin/

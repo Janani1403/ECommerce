@@ -1,48 +1,39 @@
-import { useEffect } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
-import { useStoreConfig } from './api/queries'
-import { CartProvider } from './cart/CartProvider'
-import { Footer } from './components/Footer'
-import { Header } from './components/Header'
-import { StudioPanel } from './components/StudioPanel'
-import { AdminPage } from './pages/AdminPage'
-import { CategoryPage } from './pages/CategoryPage'
-import { HomePage } from './pages/HomePage'
-import { NotFound } from './pages/NotFound'
-import { ProductPage } from './pages/ProductPage'
-import { StudioProvider } from './theme/StudioProvider'
-
-function ScrollToTop() {
-  const { pathname } = useLocation()
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
-  return null
-}
+import { Route, Routes } from 'react-router-dom'
+import { useStoreConfig } from '@/api/hooks'
+import { CONTENT } from '@/constants/content'
+import { ROUTE_PATTERNS } from '@/constants/routes'
+import { Footer } from '@/components/layout/Footer'
+import { Header } from '@/components/layout/Header'
+import { ScrollToTop } from '@/components/layout/ScrollToTop'
+import { StudioPanel } from '@/components/studio/StudioPanel'
+import { AdminPage } from '@/pages/admin/AdminPage'
+import { ImportProductsPage } from '@/pages/admin/ImportProductsPage'
+import { CategoryPage } from '@/pages/category/CategoryPage'
+import { HomePage } from '@/pages/home/HomePage'
+import { NotFound } from '@/pages/NotFound'
+import { ProductPage } from '@/pages/product/ProductPage'
+import './styles/shell.css'
 
 export default function App() {
   const { data: config } = useStoreConfig()
-  const storeName = config?.storeName ?? 'Atelier'
+  const storeName = config?.storeName ?? CONTENT.fallbackStoreName
 
   return (
-    <StudioProvider storeConfig={config}>
-      <CartProvider>
-        <ScrollToTop />
-        <div className="app">
-          <Header storeName={storeName} />
-          <main className="app__main">
-            <Routes>
-              <Route path="/" element={<HomePage storeName={storeName} />} />
-              <Route path="/c/:slug" element={<CategoryPage />} />
-              <Route path="/p/:id" element={<ProductPage />} />
-              <Route path="/admin" element={<AdminPage />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Footer storeName={storeName} />
-          <StudioPanel />
-        </div>
-      </CartProvider>
-    </StudioProvider>
+    <div className="app">
+      <ScrollToTop />
+      <Header storeName={storeName} />
+      <main className="app__main">
+        <Routes>
+          <Route path={ROUTE_PATTERNS.home} element={<HomePage storeName={storeName} />} />
+          <Route path={ROUTE_PATTERNS.category} element={<CategoryPage />} />
+          <Route path={ROUTE_PATTERNS.product} element={<ProductPage />} />
+          <Route path={ROUTE_PATTERNS.admin} element={<AdminPage />} />
+          <Route path={ROUTE_PATTERNS.adminImport} element={<ImportProductsPage />} />
+          <Route path={ROUTE_PATTERNS.notFound} element={<NotFound />} />
+        </Routes>
+      </main>
+      <Footer storeName={storeName} />
+      <StudioPanel />
+    </div>
   )
 }

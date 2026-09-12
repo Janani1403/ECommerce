@@ -1,0 +1,25 @@
+/* App shell + section rhythm. Component-specific chrome lives with its component. */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.app__main {
+  flex: 1;
+}
+
+.section {
+  padding-block: clamp(40px, 7vw, 96px);
+}
+.section__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: clamp(20px, 3vw, 40px);
+}
+.section__head h2 {
+  font-size: var(--fs-h2);
+}

@@ -1,0 +1,3 @@
+sku,name,product_type,category,subcategory,brand,price,currency,gender,status,description,materials,sizes,image_urls,image_files
+HL-EXAMPLE-1,Example Tee,clothes,Clothing,Western,House Label,1299,INR,women,active,Short description here.,Cotton|Linen,XS:4|S:8|M:10|L:6,,tee-front.jpg|tee-back.jpg
+HL-EXAMPLE-2,Example Bag,accessories,Accessories,Bags,House Label,1899,INR,unisex,draft,Everyday tote.,Cotton,One Size:20,https://example.com/img/bag.jpg,

@@ -1,4 +1,4 @@
-import { ProductCard } from '@/components/ProductCard'
+import { ProductCard } from '@/components/product/ProductCard'
 import { hashUnit } from '@/lib/format'
 import type { LayoutProps } from './registry'
 
